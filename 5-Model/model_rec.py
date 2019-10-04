@@ -12,9 +12,9 @@ from tensorflow import keras
 from tensorflow.keras.utils import plot_model 
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger, ReduceLROnPlateau
 
-sys.path.append("/home/yyoun/deepcmeson/4-Dataset")
+sys.path.append("/home/jua/deepcmeson/4-Dataset")
 from dataset_rec import get_datasets
-sys.path.append("/home/yyoun/deepcmeson/5-Model/version_model")
+sys.path.append("/home/jua/deepcmeson/5-Model/version_model")
 from rnn_rec import *
 
 def main():
@@ -30,8 +30,8 @@ def main():
         sys.exit()
 
     # set save path
-    data_path = '/home/yyoun/deepcmeson/3-Selector/'+data_name+'/'
-    save_fold = '/home/yyoun/deepcmeson/6-Results/rec/'
+    data_path = '/home/jua/deepcmeson/3-Selector/'+data_name+'/'
+    save_fold = '/home/jua/deepcmeson/6-Results/rec/'
     count_fold= len(os.walk(save_fold).next()[1])+1
     test_ver  = 'test_'+str(count_fold)
     save_path = save_fold+test_ver+'/'
@@ -66,7 +66,7 @@ model = {model_ver}
     if "version" in model_ver:
         model = get_model_fn(model_ver)(x_shape)
     else: 
-        model = load_model("/home/yyoun/deepcmeson/6-Results/rec/"+model_ver+"/model.hdf5")
+        model = load_model("/home/jua/deepcmeson/6-Results/rec/"+model_ver+"/model.hdf5")
 
     # save model plot
     print("Save modelplot") 
