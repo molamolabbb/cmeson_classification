@@ -70,9 +70,11 @@ class CMesonDataset(Sequence):
             x.append(x_array)
             
             # Set y
-            if (self.tree.jet_label == 4): y_value = 1
+            if (self.tree.jet_label >= 4): y_value = 1
             else:
                  y_value = 0
+            y_array = [np.array(y_value, dtype = np.int64)]
+            y_array = np.stack(y_array)
             y.append(y_value) 
 
         x = keras.preprocessing.sequence.pad_sequences(x, maxlen=self.max_len, padding='post', truncating='post', dtype=np.float32)
@@ -92,20 +94,21 @@ def get_datasets(data_path, batch_size, max_len):
     return train_set, val_set, test_set
 
 def main():
-    batch_size = 10
-    max_len = 5
+    batch_size = 2
+    max_len = 10
 
     folder_name = sys.argv[1]	
     data_path = '../3-Selector/{}/'.format(folder_name)	
     print(folder_name, data_path)
     train_set, val_set, test_set = get_datasets(data_path, batch_size, max_len)
 
-    print("Train Set : ",train_set, len(train_set) )
-    print("Val Set : ",val_set, len(val_set) )
-    print("Test Set : ",test_set, len(test_set) )
-    print(train_set[0])
-    print("=====================================================================")
-    print(train_set[1])
+    print("Train Set : ", len(train_set) )
+    print("Val Set : ", len(val_set) )
+    print("Test Set : ", len(test_set) )
+    tmp_x, tmp_y = train_set[69434]
+    print tmp_x
+    print tmp_y
+    print tmp_x.shape, tmp_y.shape
 
 if __name__ == '__main__':
     main()
