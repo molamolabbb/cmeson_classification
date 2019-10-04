@@ -1,16 +1,10 @@
-import os,sys
+import os,sys, glob
 import ROOT
 from ROOT import TLorentzVector
 from array import array
 import numpy as np
-import glob
 from tensorflow import keras
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import Dense, Input, Bidirectional, Dropout
-from tensorflow.keras.layers import LSTM
 from tensorflow.keras.utils import Sequence 
-from tensorflow.keras.callbacks import ModelCheckpoint
-from sklearn.utils.class_weight import compute_class_weight
 from pprint import pprint
 
 class CMesonDataset(Sequence):
