@@ -12,6 +12,10 @@ from tensorflow import keras
 from tensorflow.keras.utils import plot_model 
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger, ReduceLROnPlateau
 
+import logging
+logging.getLogger('tensorflow').disabled = True
+
+
 sys.path.append("/home/jua/deepcmeson/4-Dataset")
 from dataset_cfy import get_datasets
 sys.path.append("/home/jua/deepcmeson/5-Model/version_model")
@@ -58,7 +62,7 @@ def main():
         epochs = int(sys.argv[4])
         model_ver = sys.argv[5]
     else:
-        print "Check argv condition"
+        print ("Check argv condition")
         sys.exit()
 
     # set save path
@@ -69,7 +73,7 @@ def main():
     save_path = save_fold+test_ver+'/'
     os.mkdir(save_path)
     
-    print 'Save folder: ',test_ver
+    print ('Save folder: ',test_ver)
     
     # save log
     log ='''
@@ -91,8 +95,8 @@ model = {model_ver}
     train_set, val_set, test_set = get_datasets(data_path, batch_size, max_len)
     tmp_x, tmp_y = train_set[0]
     x_shape = tmp_x.shape
-    print 'X Shape: ',tmp_x.shape
-    print 'Y Shape: ',tmp_y.shape
+    print ('X Shape: ',tmp_x.shape)
+    print ('Y Shape: ',tmp_y.shape)
     
     # set model
     if "version" in model_ver:

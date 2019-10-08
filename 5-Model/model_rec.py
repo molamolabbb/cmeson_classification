@@ -17,6 +17,9 @@ from dataset_rec import get_datasets
 sys.path.append("/home/jua/deepcmeson/5-Model/version_model")
 from rnn_rec import *
 
+import logging
+logging.getLogger('tensorflow').disabled = True
+
 def main():
     # setting
     if len(sys.argv) == 6:
